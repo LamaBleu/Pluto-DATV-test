@@ -29,7 +29,7 @@ RX setup using an old DVB-S FtA receiver :
 Made my tests using an old DVB-S receiver : a METRONIC "Touch Box 5"
 Erased all channels, favorites. Deselected satellites, transponders.
 Created a new "DATV" satellite, with some new transponders onboard this fake sat. 
-For each transponder : freq 10720, don't care on polarity, and symbol rate : 1000, 1200, and 1500 kS/s ( https://imgur.com/cbn1QoD )
+For each transponder : freq 10720, don't care on polarity, and symbol rate : 1000, 1200, and 1500 kS/s (https://imgur.com/cbn1QoD)
 Send your signal from the Pluto (see below), then perform a channel scan once.
 
 That's it, from now channel 1 will receive at 1000kS/s, channel 2 1200 kS/s, and channel 3 1500kS/s, all on the same frequency.
