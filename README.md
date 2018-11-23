@@ -2,7 +2,9 @@ ADALM-Pluto and DATV
 
 This is not a tutorial to install Pluto from scratch ! Just detailed notes following my 3-days workshop.
 You should have installed your Pluto tools and have it tested enough : SDRangel, GNUradio... have drivers/packages installed to manage IIO device : libiio, gr-iio, libad9361 ...
-Be sure to have "Industrial IO" listed as block section in GNUradio, with FMCOMM and PlutoSDR as shown here : https://imgur.com/nv36TpP
+Be sure to have "Industrial IO" listed as block section in GNUradio, with FMCOMM and PlutoSDR as shown here :
+![image](https://user-images.githubusercontent.com/26578895/48941069-550e7880-ef1a-11e8-845d-9b060eef682a.png)
+
 May also work using SOapSDR or osmocom.
 
 IMPORTANT REMINDER :
@@ -29,7 +31,7 @@ RX setup using an old DVB-S FtA receiver :
 Made my tests using an old DVB-S receiver : a METRONIC "Touch Box 5"
 Erased all channels, favorites. Deselected satellites, transponders.
 Created a new "DATV" satellite, with some new transponders onboard this fake sat. 
-For each transponder : freq 10720, don't care on polarity, and symbol rate : 1000, 1200, and 1500 kS/s (https://imgur.com/cbn1QoD)
+For each transponder : freq 10720, don't care on polarity, and symbol rate : 1000, 1200, and 1500 kS/s ![image](https://user-images.githubusercontent.com/26578895/48941174-c2baa480-ef1a-11e8-81e6-bddc9e49f6e9.png)
 Send your signal from the Pluto (see below), then perform a channel scan once.
 
 That's it, from now channel 1 will receive at 1000kS/s, channel 2 1200 kS/s, and channel 3 1500kS/s, all on the same frequency.
@@ -50,7 +52,9 @@ You can change symbol-rate "in-the-fly" : 333, 500, 1000, 1200, 1500 KS/s.
 dvbs_tx.grc :
 
 To run dvbs_tx.grc you have to install DVBS blocks from here  : https://github.com/drmpeg/gr-dvbs
-Once installed it should appear in GNUradio in "dvbs" blocks : https://imgur.com/nv36TpP
+Once installed it should appear in GNUradio in "dvbs" blocks : 
+![image](https://user-images.githubusercontent.com/26578895/48941069-550e7880-ef1a-11e8-845d-9b060eef682a.png)
+
 
 dvbs_tx2.grc :
 
@@ -65,8 +69,9 @@ Copy the .ts files from "samples" folder to your Pluto USB Mass Storage (the fil
 
 *** From gnuradio-companion (GUI)
 
-Open dvbs_tx.grc or dvbstx_grc2 and run it.
-Screenshot : https://imgur.com/qvnh8XF
+Open dvbs_tx.grc or dvbstx_grc2 and run it.  
+![image](https://user-images.githubusercontent.com/26578895/48941283-33fa5780-ef1b-11e8-82a0-6e6ba0d305ee.png)
+
 
 Default freq is set to 970MHz, allowing use of a DVB-S receiver without LNB (DVBS RX set to 10.720 Ghz)
 
