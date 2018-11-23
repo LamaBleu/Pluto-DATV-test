@@ -1,47 +1,50 @@
 ADALM-Pluto and DATV
 
-This is not a tutorial to install Pluto from scratch ! Just detailed notes following my 3-days workshop.
-You should have installed your Pluto tools and have it tested enough : SDRangel, GNUradio... have drivers/packages installed to manage IIO device : libiio, gr-iio, libad9361 ...
-Be sure to have "Industrial IO" listed as block section in GNUradio, with FMCOMM and PlutoSDR as shown here :
-![image](https://user-images.githubusercontent.com/26578895/48941069-550e7880-ef1a-11e8-845d-9b060eef682a.png)
+This is not a tutorial to install Pluto from scratch ! Just detailed notes following my 3-days workshop.  
+You should have installed your Pluto tools and have it tested enough : SDRangel, GNUradio... have drivers/packages installed to manage IIO device : libiio, gr-iio, libad9361 ...  
+Be sure to have "Industrial IO" listed as block section in GNUradio, with FMCOMM and PlutoSDR sub-sections.  
+May also work using SOapSDR or osmocom.  
 
-May also work using SOapSDR or osmocom.
-
-IMPORTANT REMINDER :
-Always use a bandpass filter. No filter = harmonics.
-You must have a license to transmit, except on very few frequencies.
-You can cause serious trouble by transmitting on unauthorized frequencies !
- This is your own responsability !
-Outside allowed spectrum, use dummy load, or make test inside a Faraday cage, or in a deep tunnel under mountains :)
+IMPORTANT REMINDER :  
+Always use a bandpass filter. No filter = harmonics.  
+You must have a license to transmit, except on very few frequencies.  
+You can cause serious trouble by transmitting on unauthorized frequencies !  
+ This is your own responsability !  
+Outside allowed spectrum, use dummy load, or make test inside a Faraday cage, or in a deep tunnel under mountains :)  
 
 
 
 Setup DATV RX environment on Linux: 
 ================================
-My choice goes  to SDRangel.
-However to enable DATV plugin (Linux only) I had to compile SDRangel from sources.
-Information : https://github.com/f4exb/sdrangel/tree/master/plugins/channelrx/demoddatv
+My choice goes  to SDRangel. 
+However to enable DATV plugin (Linux only) I had to compile SDRangel from sources. 
+Information : https://github.com/f4exb/sdrangel/tree/master/plugins/channelrx/demoddatv  
 
-I played one day first using RPiDATV from @F5OEO_evariste  : https://github.com/F5OEO/rpidatv
+![image](https://user-images.githubusercontent.com/26578895/48941520-24c7d980-ef1c-11e8-88ac-23e613ba854e.png)
 
 
-RX setup using an old DVB-S FtA receiver :
+I played one day first using RPiDATV from @F5OEO_evariste  : https://github.com/F5OEO/rpidatv  
+
+
+RX setup using an old DVB-S FtA receiver :  
 ====================================
 
-Made my tests using an old DVB-S receiver : a METRONIC "Touch Box 5"
-Erased all channels, favorites. Deselected satellites, transponders.
+Made my tests using an old DVB-S receiver : a METRONIC "Touch Box 5"  
+Erased all channels, favorites. Deselected satellites, transponders.  
 Created a new "DATV" satellite, with some new transponders onboard this fake sat. 
-For each transponder : freq 10720, don't care on polarity, and symbol rate : 1000, 1200, and 1500 kS/s ![image](https://user-images.githubusercontent.com/26578895/48941174-c2baa480-ef1a-11e8-81e6-bddc9e49f6e9.png)
-Send your signal from the Pluto (see below), then perform a channel scan once.
+For each transponder : freq 10720, don't care on polarity, and symbol rate : 1000, 1200, and 1500 kS/s  
+![image](https://user-images.githubusercontent.com/26578895/48941174-c2baa480-ef1a-11e8-81e6-bddc9e49f6e9.png)  
 
-That's it, from now channel 1 will receive at 1000kS/s, channel 2 1200 kS/s, and channel 3 1500kS/s, all on the same frequency.
+Send your signal from the Pluto (see below), then perform a channel scan once.  
+
+That's it, from now channel 1 will receive at 1000kS/s, channel 2 1200 kS/s, and channel 3 1500kS/s, all on the same frequency.  
 
 Note : using DVB-S receiver you can only receive MPEG-2 . MPEG-4 is for DVB-S2 mode (correct me if I'm wrong)
-               using SDRangel you can decode both MPEG2 and MPEG4 TS.
+               using SDRangel you can decode both MPEG2 and MPEG4 TS.  
 
-Thus you may have to convert mp4 video file.
-Transcode videoo to MPEG2 .ts format (can be improved by RTFM):
-ffmpeg -re -i my_file.mp4 -vcodec mpeg2video -s 360x288 -r 25 -b:v 1M -acodec mp2fixed -strict -2 -b:a 128k -f mpegts test3.ts
+Thus you may have to convert mp4 video file.  
+Transcode videoo to MPEG2 .ts format (can be improved by RTFM):  
+ffmpeg -re -i my_file.mp4 -vcodec mpeg2video -s 360x288 -r 25 -b:v 1M -acodec mp2fixed -strict -2 -b:a 128k -f mpegts test3.ts  
 
 
 GNURADIO setup :
@@ -49,14 +52,15 @@ GNURADIO setup :
 The two provided files as examples (in "scripts" directory) are working in the same way, however not using same DVB-S blocks.
 You can change symbol-rate "in-the-fly" : 333, 500, 1000, 1200, 1500 KS/s. 
 
-dvbs_tx.grc :
+dvbs_tx.grc :  
 
-To run dvbs_tx.grc you have to install DVBS blocks from here  : https://github.com/drmpeg/gr-dvbs
+To run dvbs_tx.grc you have to install DVBS blocks from here  : https://github.com/drmpeg/gr-dvbs  
 Once installed it should appear in GNUradio in "dvbs" blocks : 
-![image](https://user-images.githubusercontent.com/26578895/48941069-550e7880-ef1a-11e8-845d-9b060eef682a.png)
+
+![image](https://user-images.githubusercontent.com/26578895/48941069-550e7880-ef1a-11e8-845d-9b060eef682a.png)  
 
 
-dvbs_tx2.grc :
+dvbs_tx2.grc :  
 
 Blocks in use are native on GNUradio, under "Digital Television" blocks. Just run the script.
 This example comes from @csete Alex, here : https://myriadrf.org/blog/digital-video-transmission-using-limesdr-gnu-radio/
@@ -70,7 +74,9 @@ Copy the .ts files from "samples" folder to your Pluto USB Mass Storage (the fil
 *** From gnuradio-companion (GUI)
 
 Open dvbs_tx.grc or dvbstx_grc2 and run it.  
-![image](https://user-images.githubusercontent.com/26578895/48941283-33fa5780-ef1b-11e8-82a0-6e6ba0d305ee.png)
+
+
+![image](https://user-images.githubusercontent.com/26578895/48941283-33fa5780-ef1b-11e8-82a0-6e6ba0d305ee.png)  
 
 
 Default freq is set to 970MHz, allowing use of a DVB-S receiver without LNB (DVBS RX set to 10.720 Ghz)
@@ -96,17 +102,17 @@ python python
 ****Transmit video file directly from Pluto using shell and LEANDVB/LEANTRX (GNUradio or python not needed) 
 ===============================================================================================
 
-This is based on the nice work of F4DAV and PABR team.  Nothing new.
+This is based on the nice work of F4DAV and PABR team.  Nothing new.  
 
 note 1: to transmit DATV from Pluto, leansdr/leantrx must be installed (at least running) on the pluto: 
- Follow instructions from here : http://www.pabr.org/radio/leantrx/leantrx.en.html
-or very good alternative : reflash at your own risk your Pluto using Plutoweb firmware from unixpunk/ImDroided team : https://github.com/unixpunk/PlutoWeb
+ Follow instructions from here : http://www.pabr.org/radio/leantrx/leantrx.en.html 
+or very good alternative : reflash at your own risk your Pluto using Plutoweb firmware from unixpunk/ImDroided team : https://github.com/unixpunk/PlutoWeb  
 
-note 2: lot of variants are possible: you can also copy the file using SCP/SFTP protocol, or use  runme0.sh script from external USB storage.
+note 2: lot of variants are possible: you can also copy the file using SCP/SFTP protocol, or use  runme0.sh script from external USB storage.  
 
 
 Copy MPEG2-lalinea.ts file to the USB_gadget volume (Pluto USB Mass Storage). 
-Eject the gadget volume. Will auto-remount by itself after few seconds.
+Eject the gadget volume. Will auto-remount by itself after few seconds.  
 Connect via SSH (or serial) to pluto shell then type following commands : 
 
 	mkdir /gadget
@@ -114,18 +120,18 @@ Connect via SSH (or serial) to pluto shell then type following commands :
 	mount /dev/loop7 /gadget
 	leandvbtx --cr 1/2  --s16 < /gadget/MPEG2-lalinea.ts    | leaniiotx -f 970000000 --bufsize 32768 --nbufs  32 --bw 3e6 -s 1e6 -v
 
-Will stream video at 970 MHZ, BW 1MHz, symbrate 500kS/s, QPSK, CR 1/2
+Will stream video at 970 MHZ, BW 1MHz, symbrate 500kS/s, QPSK, CR 1/2  
 
-Variant :
+Variant :  
 
-	leandvbtx --cr 1/2  --s16 < /gadget/MPEG2-lalinea.ts   | leaniiotx -f 970000000 --bufsize 32768 --nbufs  32 --bw 2e6 -s 666e3 -v
+	leandvbtx --cr 1/2  --s16 < /gadget/MPEG2-lalinea.ts   | leaniiotx -f 970000000 --bufsize 32768 --nbufs  32 --bw 2e6 -s 666e3 -v  
 
---> 970 MHZ, BW 500kHz, 333kS/s, QPSK, CR 1/2
+--> 970 MHZ, BW 500kHz, 333kS/s, QPSK, CR 1/2  
 
 
-Credits :
-LEANTRX/LEANSDR : PABR team and F4DAV http://www.pabr.org/radio/leantrx/leantrx.en.html
-rpidatv : F5OEO (tks Evariste for the video sample)
+Credits :  
+LEANTRX/LEANSDR : PABR team and F4DAV http://www.pabr.org/radio/leantrx/leantrx.en.html  
+rpidatv : F5OEO (tks Evariste for the video sample)  
 
 
 
