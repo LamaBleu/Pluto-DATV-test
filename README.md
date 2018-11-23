@@ -63,7 +63,7 @@ Once installed it should appear in GNUradio in "dvbs" blocks :
 
 dvbs_tx2.grc :  
 
-Blocks in use are native on GNUradio, under "Digital Television" blocks. Just run the script.
+Blocks in use are native on GNUradio, under "Digital Television" blocks. Just run the script.  
 This example comes from @csete Alex, here : https://myriadrf.org/blog/digital-video-transmission-using-limesdr-gnu-radio/
 
 
