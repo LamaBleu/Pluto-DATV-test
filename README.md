@@ -39,12 +39,13 @@ Send your signal from the Pluto (see below), then perform a channel scan once.
 
 That's it, from now channel 1 will receive at 1000kS/s, channel 2 1200 kS/s, and channel 3 1500kS/s, all on the same frequency.  
 
-Note : using DVB-S receiver you can only receive MPEG-2 . MPEG-4 is for DVB-S2 mode (correct me if I'm wrong)
-               using SDRangel you can decode both MPEG2 and MPEG4 TS.  
+Note : using DVB-S receiver you can only receive MPEG-2 . 
+MPEG-4 is for DVB-S2 mode (correct me if I'm wrong) however using SDRangel you can decode both MPEG2 and MPEG4 TS streams.  
 
-Thus you may have to convert mp4 video file.  
+Thus you may have to convert mp4 video file to MPEG-2.  
 Transcode videoo to MPEG2 .ts format (can be improved by RTFM):  
-ffmpeg -re -i my_file.mp4 -vcodec mpeg2video -s 360x288 -r 25 -b:v 1M -acodec mp2fixed -strict -2 -b:a 128k -f mpegts test3.ts  
+
+        ffmpeg -re -i my_file.mp4 -vcodec mpeg2video -s 360x288 -r 25 -b:v 1M -acodec mp2fixed -strict -2 -b:a 128k -f mpegts test3.ts  
 
 
 GNURADIO setup :
