@@ -15,7 +15,8 @@ Outside allowed spectrum, use dummy load, or make test inside a Faraday cage, or
 
 
 Setup DATV RX environment on Linux: 
-================================
+===================================
+
 My choice goes  to SDRangel. 
 However to enable DATV plugin (Linux only) I had to compile SDRangel from sources. 
 Information : https://github.com/f4exb/sdrangel/tree/master/plugins/channelrx/demoddatv  
@@ -24,8 +25,21 @@ Information : https://github.com/f4exb/sdrangel/tree/master/plugins/channelrx/de
 
 
 I played one day first using RPiDATV from @F5OEO_evariste  : https://github.com/F5OEO/rpidatv  
+  
+    
+Receiving DATV using VLC and LEANDVB :
+======================================
 
+More infos here : http://www.pabr.org/radio/leandvb/leandvb.en.html  
 
+    rtl_sdr -f 435008000 -s 2400000 -g 37 - | ./leandvb --gui --anf 0 --sr 500e3 --cr 1/2 --drift --tune 7e3  --drift  | cvlc -  
+  
+vlc can be replaced by mplayer, depending of the codec. However result is better using VLC
+  
+![image](https://user-images.githubusercontent.com/26578895/49224506-e0d44900-f3e1-11e8-901c-2d40c6fd0609.png)
+  
+  
+  
 RX setup using an old DVB-S FtA receiver :  
 ====================================
 
@@ -43,20 +57,9 @@ Note : using DVB-S receiver you can only receive MPEG-2 .
 MPEG-4 is for DVB-S2 mode (correct me if I'm wrong) however using SDRangel you can decode both MPEG2 and MPEG4 TS streams.  
 
 Thus you may have to convert mp4 video file to MPEG-2.  
-Transcode videoo to MPEG2 .ts format (can be improved by RTFM):  
+Transcode video to MPEG2 .ts format (can be improved by RTFM):  
 
         ffmpeg -re -i my_file.mp4 -vcodec mpeg2video -s 360x288 -r 25 -b:v 1M -acodec mp2fixed -strict -2 -b:a 128k -f mpegts test3.ts  
-
-Receiving DATV using VLC and LEANDVB :
-======================================
-
-More infos here : http://www.pabr.org/radio/leandvb/leandvb.en.html
-
-    rtl_sdr -f 435008000 -s 2400000 -g 37 - | ./leandvb --gui --anf 0 --sr 500e3 --cr 1/2 --drift --tune 7e3  --drift  | cvlc -
-
-vlc can be replaced by mplayer, depending of the codec. However result is better using VLC
-
-![image](https://user-images.githubusercontent.com/26578895/49224506-e0d44900-f3e1-11e8-901c-2d40c6fd0609.png)
 
 
 GNURADIO setup :
