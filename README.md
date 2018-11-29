@@ -114,7 +114,7 @@ python python
 
 
 
-****Transmit video file directly from Pluto using shell and LEANDVB/LEANTRX (GNUradio or python not needed) 
+Transmit video file directly from Pluto using shell and LEANDVB/LEANTRX (GNUradio or python not needed) 
 ===============================================================================================
 
 This is based on the nice work of F4DAV and PABR team.  Nothing new.  
