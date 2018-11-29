@@ -47,6 +47,17 @@ Transcode videoo to MPEG2 .ts format (can be improved by RTFM):
 
         ffmpeg -re -i my_file.mp4 -vcodec mpeg2video -s 360x288 -r 25 -b:v 1M -acodec mp2fixed -strict -2 -b:a 128k -f mpegts test3.ts  
 
+Receiving DATV using VLC and LEANDVB :
+======================================
+
+More infos here : http://www.pabr.org/radio/leandvb/leandvb.en.html
+
+    rtl_sdr -f 435008000 -s 2400000 -g 37 - | ./leandvb --gui --anf 0 --sr 500e3 --cr 1/2 --drift --tune 7e3  --drift  | cvlc -
+
+vlc can be replaced by mplayer, depending of the codec. However result is better using VLC
+
+![image](https://user-images.githubusercontent.com/26578895/49224506-e0d44900-f3e1-11e8-901c-2d40c6fd0609.png)
+
 
 GNURADIO setup :
 ================
@@ -131,8 +142,8 @@ Variant :
 
 
 Credits :  
-LEANTRX/LEANSDR : PABR team and F4DAV http://www.pabr.org/radio/leantrx/leantrx.en.html  
-rpidatv : F5OEO (tks Evariste for the video sample)  
+LEANTRX/LEANSDR : PABR team and F4DAV : http://www.pabr.org/radio/leantrx/leantrx.en.html  
+[rpidatv](https://github.com/F5OEO/rpidatv) : F5OEO (tks Evariste for the video sample)  
 
 
 
