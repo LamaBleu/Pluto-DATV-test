@@ -3,7 +3,7 @@ ADALM-Pluto and DATV
 This is not a tutorial to install Pluto from scratch ! Just detailed notes following my 3-days workshop.  
 You should have installed your Pluto tools and have it tested enough : SDRangel, GNUradio... have drivers/packages installed to manage IIO device : libiio, gr-iio, libad9361 ...  
 Be sure to have "Industrial IO" listed as block section in GNUradio, with FMCOMM and PlutoSDR sub-sections.  
-May also work using SOapSDR or osmocom.  
+May also work using SoapySDR or osmocom.  
 
 IMPORTANT REMINDER :  
 Always use a bandpass filter. No filter = harmonics.  
@@ -142,6 +142,44 @@ Variant :
 	leandvbtx --cr 1/2  --s16 < /gadget/MPEG2-lalinea.ts   | leaniiotx -f 970000000 --bufsize 32768 --nbufs  32 --bw 2e6 -s 666e3 -v  
 
 --> 970 MHZ, BW 500kHz, 333kS/s, QPSK, CR 1/2  
+
+
+Transmit RPi live-webcam on Pluto (using RPi and avc2ts from F5OEO) : 
+=====================================================================
+
+Thanks to F5OEO for suggesting this idea, and helping to debug.
+
+- video source from RPi : Picam or USB webcam, desktop.
+- Pluto is listening for video-TS multicast sent by RPi running avc2ts.
+
+
+On the Pi side, install avc2ts : https://github.com/F5OEO/avc2ts  
+Installation is simple but can take a long time ! Do not interrupt.  
+Do not confuse with avc2ts utility included with RPiDATV, this one is not compatible.  
+Still on the Pi, install mnc : https://github.com/marascio/mnc  
+
+Pluto : download mnc tool (compiled binary) from [here](https://github.com/LamaBleu/Pluto-DATV-test/raw/master/mnc/mnc).
+      : copy the mnc binary to /bin or /usr/sbin, make it executable  
+
+
+From shell on Pi run following command to start Picam streaming:
+
+        ~/avc2ts/avc2ts -t 0 -m 403000 -b 300000 -x 640 -y 480 -f 20 -n 230.0.0.10:10000:0.0.0.0
+
+Use : ~/avc2ts/avc2ts -t 3 .........  to stream USB cam.  
+Adapt settings !
+
+On the pluto side, to transmit on 437 MHz, run following command : 
+
+        mnc -l -p 10000 230.0.0.10 | leandvbtx -f 4 --fill --cr 7/8  --s16  | leaniiotx -f 437000000 --bufsize 32768 --nbufs  32 --bw 3e6 -s 1e6 -v
+
+
+This was tested using PiZero + Picam, and standalone Pluto powered by battery-pack and connected via WiFi, making a 100% mobile DATV transmitter ([demo video](https://mega.nz/#!m4hViISQ!M9kxJHDA3iXiK_Q7rS3hh-zflXgVD2A8wAFy8ql4I78))
+
+Note : Pluto-firmware including mnc executable and more is available for download, please follow instructions from here : https://github.com/LamaBleu/plutoscripts
+
+
+
 
 
 Credits :  
