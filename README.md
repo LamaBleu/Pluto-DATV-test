@@ -144,8 +144,8 @@ Variant :
 --> 970 MHZ, BW 500kHz, 333kS/s, QPSK, CR 1/2  
 
 
-Transmit webcam+audio file using ffmpeg and GNUradio
-====================================================
+Pluto : transmit webcam+audio file using ffmpeg and GNUradio
+============================================================
 
 Files are located in the [gnuradio-webcam](https://github.com/LamaBleu/Pluto-DATV-test/tree/master/scripts/gnuradio-webcam) directory.  
   
