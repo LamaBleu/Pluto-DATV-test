@@ -23,7 +23,7 @@ Keep the task running on the terminal.
   
   
   
-Testing only : monitoring video/audio stream on local computer (GNUradio input)  
+### Testing only : monitoring video/audio stream on local computer (GNUradio input)  
   
 You don't need to apply this step except if you want to have a look at the GNUradio TS input stream   
   
@@ -35,17 +35,17 @@ You don't need to apply this step except if you want to have a look at the GNUra
         - stopping cvlc/mplayer will STOP RF transmission and you have to restart GRC script.  
 
 
-Running from shell :  
+### Running from shell :  
 Use  'python dvbs_tx_udp_monitor.py'  
 or : 'python python dvbs_tx_tcp_monitor.py' (then in second console start "nc 127.0.0.1 57000 - cvlc -" to start transmit and monitoring)  
   
   
   
   
-Bug :  
+### Bug :  
 Sometimes audio discontinuity after few minutes, not always. More related to ffmpeg than gnuradio  
   
-First conclusion :  
+### First conclusion :  
 Works well for video, but still need tweaking on ffmpeg settings and bandwidth.  
 Enabling TCP sink for monitoring gives good result, however you have to follow the sequence and restart the gnuradio script every time.  
 
