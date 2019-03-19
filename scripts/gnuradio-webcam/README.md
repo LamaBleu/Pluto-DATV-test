@@ -11,7 +11,7 @@ Start TS streaming using ffmpeg, in this example adding the local webcam /dev/vi
     -mpegts_service_id 1 -metadata service_provider=”CALLSIGN” -metadata service_name=CALLSIGN \  
     -r 15 -ignore_unknown -pix_fmt yuv420p udp://127.0.0.1:58000  
 
-You can use ffmpeg-start.sh script to perform this task. Edit paths on this file befire running it.  
+You can use ffmpeg-start.sh script to perform this task. Edit paths on this file before running it.  
 Keep the task running on the terminal.  
 
 - Start GNUradio, and run  dvbs_tx_udp_monitor.GRC script. Pluto should start transmit on 970 MHz.  
