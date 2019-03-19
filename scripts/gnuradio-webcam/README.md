@@ -1,3 +1,8 @@
+Transmit DVB-S video+audio stream from ADALM-Pluto using ffmpgeg and GNUradio
+=============================================================================
+
+
+
 Make sure your can access your webcam, test it first : ffplay /dev/video  
   
 Start TS streaming using ffmpeg, in this example adding the local webcam /dev/vide0, and mp3 file as audio.  
