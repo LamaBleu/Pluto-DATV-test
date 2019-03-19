@@ -16,7 +16,7 @@ Start TS streaming using ffmpeg, in this example adding the local webcam /dev/vi
     -mpegts_service_id 1 -metadata service_provider=”CALLSIGN” -metadata service_name=CALLSIGN \  
     -r 15 -ignore_unknown -pix_fmt yuv420p udp://127.0.0.1:58000  
 
-You can use ffmpeg-start.sh script to perform this task. Edit paths on this file before running it.  
+You can also use ffmpeg-start.sh script to perform this task. Edit paths on this file before running it.  
 Keep the task running on the terminal.  
 
 - Start GNUradio, and run  dvbs_tx_udp_monitor.GRC script. Pluto should start transmit on 970 MHz.  
@@ -27,10 +27,10 @@ Keep the task running on the terminal.
   
 You don't need to apply this step except if you want to have a look at the GNUradio TS input stream   
   
-   * Enabling UDP sink block : run the dvbs_tx_udp_monitor.GRC script, then "nc -lu 127.0.0.1 57000 | mplayer -" or "nc -lu 127.0.0.1 57000 | cvlc -"  
+   * Enabling UDP sink block : run the dvbs_tx_udp_monitor.GRC script, then "nc -lu 127.0.0.1 57000 | mplayer -" or "nc -lu 127.0.0.1 57000 | cvlc -" from a terminal console.  
    * Enabling TCP sink block : result is far better, however you have to respect following order.  
         - open Gnuradio, launch dvbs_tx_tcp_monitor.GRC script  
-        - from a terminal window trun webcam monitoring: "nc 127.0.0.1 57000 | cvlc -" or "nc 127.0.0.1 57000 | mplayer -"  
+        - from a terminal window run webcam monitoring: "nc 127.0.0.1 57000 | cvlc -" or "nc 127.0.0.1 57000 | mplayer -"  
         - only from this moment gnuradio will start to transmit !  
         - stopping cvlc/mplayer will STOP RF transmission and you have to restart GRC script.  
 
