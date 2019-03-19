@@ -3,14 +3,14 @@
 - Start TS streaming using ffmpeg, in this example adding the local webcam /dev/vide0, and mp3 file as audio.  
   Also add OSD text (content of /home/user/datv_text.txt).  
  This line works well for me, but you will perhaps need to adapt/improve parameters.  
-  
+    
     ffmpeg -r 10 -i '/dev/video0' -i '/home/user/Musique/podcast_-_16bits.mp3' \  
     -acodec mp2  -ac 1  -f mpegts -b:v 0.7M \  
     -vf "drawtext=textfile=/home/user/datv_text.txt:x=60:y=34:fontsize=40:shadowx=3:shadowy=3:fontcolor=red:shadowcolor=white" \
     -b:a 128k -ar 44100 -ac 2 -af asetpts=N/SR/TB \
     -mpegts_service_id 1 -metadata service_provider=”CALLSIGN” -metadata service_name=CALLSIGN \
     -r 15 -ignore_unknown -pix_fmt yuv420p udp://127.0.0.1:58000
-
+  
 You can use ffmpeg-start.sh script to perform this task. Edit paths on this file befire running it.  
 Keep the task running on the terminal.  
 
