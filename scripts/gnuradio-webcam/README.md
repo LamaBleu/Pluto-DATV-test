@@ -22,8 +22,8 @@ Testing only : monitoring video/audio stream on local computer (GNUradio input)
   
 You don't need to apply this step except if you want to have a look at the GNUradio TS input stream   
   
-    * Enabling UDP sink block : run the dvbs_tx_udp_monitor.GRC script, then "nc -lu 127.0.0.1 57000 | mplayer -" or "nc -lu 127.0.0.1 57000 | cvlc -"  
-    * Enabling TCP sink block : result is far better, however you have to respect following order.  
+   * Enabling UDP sink block : run the dvbs_tx_udp_monitor.GRC script, then "nc -lu 127.0.0.1 57000 | mplayer -" or "nc -lu 127.0.0.1 57000 | cvlc -"  
+   * Enabling TCP sink block : result is far better, however you have to respect following order.  
         - open Gnuradio, launch dvbs_tx_tcp_monitor.GRC script  
         - from a terminal window trun webcam monitoring: "nc 127.0.0.1 57000 | cvlc -" or "nc 127.0.0.1 57000 | mplayer -"  
         - only from this moment gnuradio will start to transmit !  
