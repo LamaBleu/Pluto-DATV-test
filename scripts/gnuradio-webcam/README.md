@@ -66,9 +66,9 @@ So far I had success with all these apps after some tuning.
 It's important to start first at low resolution (352x288, 640x480): we don't need to stream HD or 4K !
 
 - Ip Webcam :
-Lot of features. Once started will display current IP on the screen, useful.
-Connectiong to the homepage you can switch frontal/back camera, change resolution and camera orientation on the fly. Can display current time OSD.
-Main homepage is at : http://<mobile_ip:8080> 
+Lot of features. Once started will display current IP on the screen, useful.  
+Connecting to the homepage you can toggle frontal/back camera, change resolution and camera orientation on the fly. Can display current time OSD.  
+Main homepage is at : http://<mobile_ip:8080>  
 Video stream is available at : http://<mobile_ip:8080>/video  
 Audio stream : http://<mobile_ip>:8080/audio.wav  
   
@@ -85,7 +85,7 @@ Tell your VLC client or ffmpeg to connect here : http://<mobile_ip:8081>
 ### ffmpeg   
   
 The most complex part ! The settings I give here are totally empirics, worked for me.   
-Run the GRC script first, to have your Pluto ready to transmit.  
+First run the GRC script to have your Pluto ready to transmit.  
   
 Example using BL IP-Camera (and streaming public french radio 'France Inter' as audio channel)  
 
@@ -108,7 +108,7 @@ Anoher example using IP Webcam application :
     -acodec mp2 -r 20 -muxrate 1.1M udp://127.0.0.1:58000  
 
 So far the best result is obtained using IP Webcam.However you have to deal with resolution and fps.  
-Try first at low res. I was able to have a decent reception at 1000kS and 1200kS on my sat-receiver, up to 800x600, with sound, but using low fps.  
+Try first at low res. I was able to get a decent reception at 1000kS and 1200kS on my sat-receiver, up to 800x600, with sound, but using low fps.  
 Even if result is very good, please notice the latency is at least 5 seconds and will increase with time.  
 Do not hesitate to submit better settings and correct my mistakes.  
 
