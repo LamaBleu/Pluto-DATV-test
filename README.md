@@ -82,7 +82,7 @@ This example comes from @csete Alex, here : https://myriadrf.org/blog/digital-vi
 
 
 Transmit video file using GNURADIO :
-================================
+===================================
 
 Copy the .ts files from "samples" folder to your Pluto USB Mass Storage (the files in the folder, not the folder itself)
 
@@ -171,6 +171,17 @@ Keep the task running on the terminal.
 Then start GNUradio, and run  dvbs_tx_udp_monitor.GRC script. Pluto should start transmit on 970 MHz.  
   
 You can also run the python scripts located on the same directory.  
+
+
+
+Transmit mobile phone webcam using GNURADIO :  
+=============================================  
+  
+By installing application on your mobile to send the camera stream over network.  
+Using the same GRC script.  
+  
+More details in the [gnuradio-webcam](https://github.com/LamaBleu/Pluto-DATV-test/tree/master/scripts/gnuradio-webcam) directory.
+
 
 
 Transmit RPi live-webcam on Pluto (using RPi and avc2ts from F5OEO) : 
