@@ -1,3 +1,13 @@
+Instead of using a .ts video file as source, we replace the file source block in GNUradio by UDP source.  
+Also adding TCP (or UDP) sink to get a local monitor of the video stream received by GNUradio.
+  
+  
+  
+![image](https://user-images.githubusercontent.com/26578895/54875469-4c627c00-4e00-11e9-9744-75ef4999eb1e.png)
+  
+  
+  
+
 Webcam : Transmit DVB-S video+audio stream from ADALM-Pluto using ffmpgeg and GNUradio
 ======================================================================================
 
@@ -20,6 +30,7 @@ You can also use ffmpeg-start.sh script to perform this task. Edit paths on this
 Keep the task running on the terminal.  
 
 - Start GNUradio, and run  dvbs_tx_udp_monitor.GRC script. Pluto should start transmit on 970 MHz.  
+  
   
   
   
