@@ -1,17 +1,28 @@
-ADALM-Pluto and DATV
+# ADALM-Pluto and DATV
 
 This is not a tutorial to install Pluto from scratch ! Just detailed notes following my 3-days workshop.  
 You should have installed your Pluto tools and have it tested enough : SDRangel, GNUradio... have drivers/packages installed to manage IIO device : libiio, gr-iio, libad9361 ...  
 Be sure to have "Industrial IO" listed as block section in GNUradio, with FMCOMM and PlutoSDR sub-sections.  
 May also work using SoapySDR or osmocom.  
 
-IMPORTANT REMINDER :  
+### IMPORTANT REMINDER :  
 Always use a bandpass filter. No filter = harmonics.  
 You must have a license to transmit, except on very few frequencies.  
 You can cause serious trouble by transmitting on unauthorized frequencies !  
  This is your own responsability !  
 Outside allowed spectrum, use dummy load, or make test inside a Faraday cage, or in a deep tunnel under mountains :)  
+  
+Update Nov 2019  
+===============  
 
+F5OEO recently released a firmware for ADALM-pluto dedicated to DATV.  
+Features : using the pluto to transmit (DVB-S/DVB-S2) video/audio stream from host computer using "OBS" or "VMIX" apps or from mobile phone using "Larix Software" app.  
+  
+Documentation is included on the firmware ( http://pluto.local )  
+To get the firmware, you have to [register to VivaDATV forums](http://www.vivadatv.org/ucp.php?mode=register)  
+  
+More information can be found here : http://www.vivadatv.org/viewtopic.php?f=87&t=685  
+Tutorial (and more on Pluto) using OBS app : https://wiki.batc.org.uk/Custom_DATV_Firmware_for_the_Pluto  
 
 
 Setup DATV RX environment on Linux: 
